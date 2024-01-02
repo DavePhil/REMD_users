@@ -2,6 +2,7 @@ package com.remd.remd_users.controller;
 
 import com.remd.remd_users.models.Users;
 import com.remd.remd_users.services.impl.UserService;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,12 @@ public class UserController {
         if (!userSave.isPresent()) return new ResponseEntity<>("Identifiant ou mot de passe incorrect", HttpStatus.BAD_REQUEST);
         else if (!userService.verifyPassword(password, userSave.get().getPassword())) return new ResponseEntity<>("Identifiant ou mot de passe incorrect", HttpStatus.BAD_REQUEST);
         else return new ResponseEntity<>(userSave, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public Users getById(@PathVariable("id") Long id){
+        Users user = userService.getById(id).get();
+        return user;
     }
 
 

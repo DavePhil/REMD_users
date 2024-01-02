@@ -12,8 +12,6 @@ import java.util.Date;
 @Data
 @DynamicUpdate
 public class Token {
-    private static final int EXPIRATION = 60 ;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,8 +19,7 @@ public class Token {
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createdDate = new Date();
-
-    @OneToOne(targetEntity = Users.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Users.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private Users user;
 

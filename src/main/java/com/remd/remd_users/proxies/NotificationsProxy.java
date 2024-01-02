@@ -3,7 +3,7 @@ package com.remd.remd_users.proxies;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @FeignClient(name = "remd-notifications", url = "localhost:9002")
 public interface NotificationsProxy {

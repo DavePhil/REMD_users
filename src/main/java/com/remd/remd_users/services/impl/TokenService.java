@@ -28,8 +28,9 @@ public class TokenService implements IServiceToken {
     }
 
     public boolean _isTokenExpired(Token token){
-        long difference = new Date().getHours() - token.getCreatedDate().getHours();
-        return (difference > 1200000);
+        Date date = new Date();
+        Integer difference = date.getMinutes() - token.getCreatedDate().getMinutes();
+        return !((difference < 2) && date.getDate()==token.getCreatedDate().getDate());
     }
 
     @Override
