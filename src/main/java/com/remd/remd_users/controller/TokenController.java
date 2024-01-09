@@ -24,7 +24,6 @@ public class TokenController {
         Token token = tokenService.save(email, users);
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
-
     @GetMapping("verifyToken/{token}")
     public ResponseEntity<?> verifyToken(@PathVariable("token") String token){
         Boolean isVerify = tokenService.verifyToken(token);

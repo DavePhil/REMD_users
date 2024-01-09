@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,6 +21,11 @@ public class UserController {
         if (userService.getUser(user.getEmail()).isPresent()) return new ResponseEntity<>("Cette utilisateur existe déjà", HttpStatus.BAD_REQUEST);
         Users saveUser = userService.CreateUser(user); // Recuperation de l'instance à sauvegarder
         return new ResponseEntity<>(saveUser, HttpStatus.OK);
+    }
+
+    @GetMapping("all")
+    public List<Users> all(){
+        return userService.findAll();
     }
 
     @GetMapping("/{email}/{password}")
