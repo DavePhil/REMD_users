@@ -9,11 +9,6 @@ pipeline {
                 git changelog: false, poll: false, url: 'https://github.com/DavePhil/REMD_users.git'
             }
         }
-        stage('Maven Build'){
-            steps {
-                bat "mvn clean install"
-            }
-        }
         stage('Docker Build'){
             steps {
                 script {
